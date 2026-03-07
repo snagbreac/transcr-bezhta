@@ -18,7 +18,7 @@ confusables_I = "i𝛊𝖫۱𝓁ⵏ𝘭𝐥ꓡℐ𝙻ℹ𝜄𝗹𝓛ӏⅠ𐌠�
 for confusable in confusables_I:
     normalization_dict[confusable] = 'i'
 
-dygraphs_cyr2lat = {
+digraphs_cyr2lat = {
     'пi': 'p’',
     'тi': 't’',
     'цi': 'c’',
@@ -79,8 +79,8 @@ test_string = test_string.lower()
 for key in normalization_dict:
     test_string = test_string.replace(key, normalization_dict[key])
 
-for key in dygraphs_cyr2lat:
-    test_string = test_string.replace(key, dygraphs_cyr2lat[key])
+for key in digraphs_cyr2lat:
+    test_string = test_string.replace(key, digraphs_cyr2lat[key])
 for key in consonants_cyr2lat:
     test_string = test_string.replace(key, consonants_cyr2lat[key])
 for key in vowels_cyr2lat:
