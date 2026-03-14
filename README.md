@@ -1,17 +1,22 @@
 # Cyrillic-to-Latin Converter for Bezhta
 
-Basic usage:
+## Basic usage
 
-- Download `transcr_bezhta.py` (or clone the repository)
-- Create `input.txt` in the same folder and put the text you want transcribed in it:
-
+- Clone the repository (or just download `transcr_bezhta.py` and skip this):
 ```bash
-echo "Аьдам-инсаллис бишшун йукъо бечелъи гей аьдаьмли мегьцас миц." >> input.txt
+$ git clone -q https://github.com/snagbreac/transcr-bezhta.git
+$ cd transcr-bezhta
 ```
-
-
-- Run `transcr_bezhta.py`:
-
+- Create `input.txt` (should contain the text for transcription) in the same folder as `transcr_bezhta.py`:
 ```bash
-python transcr_bezhta.py
+$ echo "Аьдам-инсаллис бишшун йукъо бечелъи гей аьдаьмли мегьцас миц." >> input.txt
+```
+- Run `transcr_bezhta.py`:
+```bash
+$ python transcr_bezhta.py
+```
+- The results will be in `output.txt`:
+```bash
+$ cat output.txt
+ädam-insallis biššun juq’o bečełi gej ädämli mehcas mic.
 ```
