@@ -1,6 +1,7 @@
 import unicodedata
 
 normalization_dict = {
+    'я': 'йа',
     'a': 'а',
     'o': 'о',
     "e": "е",
