@@ -73,19 +73,29 @@ vowels_cyr2lat = {
     "\u0304": ":",
 }
 
-with open('input.txt', 'r', encoding='utf8') as fin:
-    test_string = fin.read()
-test_string = unicodedata.normalize('NFD', test_string)
-test_string = test_string.lower()
-for key in normalization_dict:
-    test_string = test_string.replace(key, normalization_dict[key])
+full_cyr2lat = digraphs_cyr2lat | consonants_cyr2lat | vowels_cyr2lat
 
-for key in digraphs_cyr2lat:
-    test_string = test_string.replace(key, digraphs_cyr2lat[key])
-for key in consonants_cyr2lat:
-    test_string = test_string.replace(key, consonants_cyr2lat[key])
-for key in vowels_cyr2lat:
-    test_string = test_string.replace(key, vowels_cyr2lat[key])
+def normalize_text(input_text:str) -> str:
+    input_text = unicodedata.normalize('NFD', input_text).lower()
+    for key in normalization_dict:
+        input_text = input_text.replace(key, normalization_dict[key])
+    return input_text
 
-with open('output.txt', 'w', encoding='utf8') as fout:
-    fout.write(test_string)
+def cyr2lat_text(input_text:str) -> str:
+    for key in full_cyr2lat:
+        input_text = input_text.replace(key, full_cyr2lat[key])
+    return input_text
+
+def transcribe_text_from_file(path_to_input:str, path_to_output:str) -> None:
+    with open(path_to_input, 'r', encoding='utf8') as fin:
+        text = fin.read()
+    text_normalized = normalize_text(text)
+    text_post_cyr2lat = cyr2lat_text(text_normalized)
+    with open(path_to_output, 'w', encoding='utf8') as fout:
+        fout.write(text_post_cyr2lat)
+
+if __name__ == '__main__':
+    transcribe_text_from_file(
+        path_to_input='input.txt',
+        path_to_output='output.txt',
+    )
