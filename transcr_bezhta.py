@@ -87,13 +87,17 @@ def cyr2lat_text(input_text:str) -> str:
         input_text = input_text.replace(key, full_cyr2lat[key])
     return input_text
 
+def transcribe_text(input_text:str) -> str:
+    text_normalized = normalize_text(input_text)
+    text_post_cyr2lat = cyr2lat_text(text_normalized)
+    return text_post_cyr2lat
+
 def transcribe_text_from_file(path_to_input:str, path_to_output:str) -> None:
     with open(path_to_input, 'r', encoding='utf8') as fin:
-        text = fin.read()
-    text_normalized = normalize_text(text)
-    text_post_cyr2lat = cyr2lat_text(text_normalized)
+        input_text = fin.read()
+    output_text = transcribe_text(input_text)
     with open(path_to_output, 'w', encoding='utf8') as fout:
-        fout.write(text_post_cyr2lat)
+        fout.write(output_text)
 
 if __name__ == '__main__':
     transcribe_text_from_file(
